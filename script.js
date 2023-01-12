@@ -1647,8 +1647,13 @@ map.on('zoomend', function (e) {
 
 function onEachFeature(feature, layer) {
     layer.on('mouseover', function (e) {
- 								var field1=document.getElementById('typeOfZone');
-								field1.innerHTML=e.target.feature.properties.size;;
+
+ 			var field1=document.getElementById('typeOfZone');
+			field1.innerHTML=e.target.feature.properties.size;;
+
+      var field2=document.getElementById('f2');
+			field2.innerHTML=e.target.feature.properties.crus;;
+
       var fieldContent=document.getElementById('f3')
       fieldContent.innerHTML=e.target.feature.properties.content;
      })
