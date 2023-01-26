@@ -1628,9 +1628,6 @@ L.geoJSON(coteDesBarsRegion, {
 
 var selected = null;
 
-map.on('zoomend', function (e) {
-    zoom_based_layerchange()
-})
 
 function dehighlight (layer) {
 		  if (selected === null || selected._leaflet_id !== layer._leaflet_id) {
@@ -1680,8 +1677,11 @@ function onEachFeature(feature, layer) {
         if (previous) {
           dehighlight(previous);
         }
-}),
-   
+});
+  
+map.on('zoomend', function (e) {
+    zoom_based_layerchange();
+});
 
 function clean_map() {
     map.eachLayer(function (layer) {
@@ -1695,8 +1695,8 @@ function clean_map() {
         console.log(layer);
       
     });
-}
-
+}; 
+  
 function zoom_based_layerchange() {
     var currentZoom = map.getZoom();
     if (currentZoom >= 12) {
