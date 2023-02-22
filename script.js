@@ -457,9 +457,8 @@ var regionMontagneDeReims = {
     "type": "Feature",
     "properties": {
       "name":"Montagne de Reims", 
-      "crus": "9 Grands Cru",
       "content":"Des vignes exposées plein sud perchés sur des coteaux de marnes argilo-calcaires font de cette région le berceau des plus grands crus de Pinot Noirs notamment sur le flanc est de la 'montagne de Reims'. L'encépagement est plus varié sur le nord de cette région, aux alentours de Reims",
-    },
+    "content1": "url('https://placekitten.com/600/400?image=15')"},
     "geometry": {
       "type": "Polygon",
       "coordinates": [
@@ -1626,77 +1625,9 @@ var coteDesBarsRegion = {
 L.geoJSON(coteDesBarsRegion, { 
   onEachFeature: onEachFeature}).addTo(map);
 
-var selected = null;
-
-
-function dehighlight (layer) {
-		  if (selected === null || selected._leaflet_id !== layer._leaflet_id) {
-			  layer.setStyle(defaultStyle);
-		  }
-		}
-
-var defaultStyle = {
-  weight: 3,
-  opacity: 1,
-  fill: true,
-  color: "#3388ff",
-  fillColor: null,
-  fillOpacity: 0.2
-}
-
-function onEachFeature(feature, layer) {
-    layer.on('mouseover', function (e) {
- 								var field1=document.getElementById('typeOfZone');
-								field1.innerHTML=e.target.feature.properties.name;;
-      var fieldContent=document.getElementById('f3')
-      fieldContent.innerHTML=e.target.feature.properties.content;
-      
-    layer.setStyle({
-				weight: 5,
-				color: 'green'
-			});
-			if (!L.Browser.ie && !L.Browser.opera) {
-				layer.bringToFront();
-			}
-
-     }),
-
-     layer.on('mouseout', function (e) {
-		  if (selected === null || selected._leaflet_id !== e.target._leaflet_id) {
-			  layer.setStyle(defaultStyle);
-		  }
-}),
-
-
-      layer.on('click', function (e) {
-        if (selected !== null) {
-          var previous = selected;
-        }
-        map.fitBounds(e.target.getBounds());
-        selected = e.target;
-        if (previous) {
-          dehighlight(previous);
-        }
-});
-  
 map.on('zoomend', function (e) {
     zoom_based_layerchange();
 });
-
-function clean_map() {
-    map.eachLayer(function (layer) {
-        if (layer instanceof L.GeoJSON)
-        //Do marker specific actions here
-
-        {
-            map.removeLayer(layer);
-
-        }
-        console.log(layer);
-      
-    });
-}; 
-  
 function zoom_based_layerchange() {
     var currentZoom = map.getZoom();
     if (currentZoom >= 12) {
@@ -1729,7 +1660,7 @@ function zoom_based_layerchange() {
   onEachFeature: onEachFeature}).addTo(map);
             L.geoJSON(velseEtArdreGeo, { 
   onEachFeature: onEachFeature}).addTo(map);
-            L.geoJSON(grandeMontagnedereimsGeo, { 
+      L.geoJSON(grandeMontagnedereimsGeo, { 
   onEachFeature: onEachFeature}).addTo(map);
     }
   
@@ -1745,5 +1676,90 @@ else if (currentZoom <= 11) {
   onEachFeature: onEachFeature}).addTo(map);
   L.geoJSON(regionVitryat, { 
   onEachFeature: onEachFeature}).addTo(map);
-}}
+}};
+
+function clean_map() {
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.GeoJSON)
+        //Do marker specific actions here
+
+        {
+            map.removeLayer(layer);
+
+        }
+        console.log(layer);
+      
+    });
+}; 
+
+var selected = null;
+
+
+function dehighlight (layer) {
+		  if (selected === null || selected._leaflet_id !== layer._leaflet_id) {
+			  layer.setStyle(defaultStyle);
+		  }
+		}
+
+var defaultStyle = {
+  weight: 3,
+  opacity: 1,
+  fill: true,
+  color: "#3388ff",
+  fillColor: null,
+  fillOpacity: 0.2,
 }
+
+function onEachFeature(feature, layer) {
+    layer.on('mouseover', function (e) {
+ 			var field1=document.getElementById('typeOfZone');
+			field1.innerHTML=e.target.feature.properties.name;
+      
+      var fieldContent=document.getElementById('f3');
+      fieldContent.innerHTML=e.target.feature.properties.content;
+ 
+      var fieldContent1=document.getElementById('exemple-1');
+fieldContent1.style.backgroundImage=e.target.feature.properties.content1;
+      
+      
+    layer.setStyle({
+				weight: 5,
+				color: 'green'
+			});
+			if (!L.Browser.ie && !L.Browser.opera) {
+				layer.bringToFront();
+			}
+
+     }),
+
+     layer.on('mouseout', function (e) {
+		  if (selected === null || selected._leaflet_id !== e.target._leaflet_id) {
+			  layer.setStyle(defaultStyle);
+      var field1=document.getElementById('typeOfZone');
+								field1.innerHTML=selected.feature.properties.name;
+      var fieldContent=document.getElementById('f3')
+      fieldContent.innerHTML=selected.feature.properties.content;
+        var fieldContent1=document.getElementById('exemple-1');
+fieldContent1.style.backgroundImage=selected.feature.properties.content1;
+        
+      
+		  }
+}),
+
+
+      layer.on('click', function (e) {
+        if (selected !== null) {
+          var previous = selected;
+        }
+        selected = e.target;
+        if (previous) {
+          dehighlight(previous);
+        }
+});
+ 
+}
+
+var searchLayer = L.layerGroup().addTo(map);
+//... adding data in searchLayer ...
+map.addControl( new L.Control.Search({layer: searchLayer}) );
+//searchLayer is a L.LayerGroup contains searched markers

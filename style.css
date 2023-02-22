@@ -1,25 +1,88 @@
-#map {
-  float: left;
-  height: 400px;
-  width: 80%;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.parent {
-display: grid;
-grid-template-columns: 0.3fr 2fr 0.5fr;
-grid-template-rows: 0.3fr repeat(2, 1fr) 0.7fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-}
-
-.div1 { grid-area: 1 / 1 / 2 / 4; }
-.div2 { grid-area: 2 / 1 / 4 / 3; }
-.div3 { grid-area: 2 / 3 / 4 / 4; }
-.div4 { grid-area: 4 / 1 / 5 / 4; }
-
-.column {
-  float: left;
-  width: 33.33%;
-}
+body {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  }
+  
+  #map {
+    height: 600px;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border: thick double #32a1ce;
+          
+              
+  }
+  
+  .container {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 25% 25% 25% 25%; 
+    grid-template-rows: 10% 30% 30% 30%; 
+    gap: 5px 5px; 
+    grid-template-areas: 
+      "Header Header Header Header"
+      "map map map Description"
+      "map map map Description"
+      "Contenu Contenu Contenu Contenu"; 
+  }
+  .header { 
+  grid-area: Header;
+  display: flex;
+  justify-content: space-between;
+  }
+  
+  
+  .contenu { 
+   display:flex;
+   grid-area: Contenu;
+  }
+  .description {
+   grid-area: Description;
+  }
+  .map { 
+   grid-area: map;
+  }
+  .site-identity h1 {
+    font-size: 1.5em;
+    margin: .6em 0;
+    display: inline-block;
+  }
+  
+  
+  .site-navigation ul, 
+  .site-navigation li {
+    margin: 0; 
+    padding: 0;
+  }
+  
+  .site-navigation li {
+    display: inline-block;
+    margin: 1.4em 1em 1em 1em;
+  }
+  
+  .exemple {
+    position: relative;
+    border-radius:15px;
+    border: dashed red;
+    width:30%;
+    margin:10px;
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    resize: both;
+    overflow: auto;
+  }
+  
+  .exemple > p {
+    margin:5px
+  }
+  
+  .exemple::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+  }
