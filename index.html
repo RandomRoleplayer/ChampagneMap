@@ -13,53 +13,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
 </head>
 
 <body>
-
-<div class="div1"> 
-<p> titre </p>
+<div class="container">
+<div class="header"> 
+  <div class="site-identity">
+    <h1><a href="#">Logo</a></h1>
+  </div>
+    <div class="selected-zone">
+    <h1 id=typeOfZone>Zone</h1>
+  </div>  
+  <nav class="site-navigation">
+    <ul class="nav">
+      <li><a href="#">About</a></li> 
+      <li><a href="#">Contact</a></li> 
+    </ul>
+  </nav>
 </div>
 
-<div class="div2" id="map"></div>
+<div class="map" id="map"></div>
 
-
-<div class="div3" class="sidebar">
-<p id="typeOfZone"> Régions </p>   
-        <table >
-        <tr>
-        <td id='pict'> </td>
-        <td id='pict2'> </td>
-        </tr>
-        </table></br> </br>
-
+<div class="description"> 
         <table>
           <tr>
-          <th>Cépages</th>
-          <td class="content" id='f1'></td>
-          </tr> <tr>
-          <th >Crus</th>
-          <td class="content" id='f2'></td></tr>
-          <tr>
-         <th align="left"></th>
-          <td id='f3'></td>
-          </tr> <tr>
-          
-          </div>
-
-</body>
-          <div class="div4"> 
-  <div class="column">
-    <p> test </p>
+          <th></th>
+          <td class="sideInfo" id='f1'></td>
+          </tr><tr>
+          <th></th>
+          <td class="sideInfo" id='f2'></td>
+          <th></th>
+          <td class="sideInfo" id="f3"></td>
+          </tr> </table>
+           </div>
+  
+    <div class="contenu"> 
+        <div class="exemple" id="exemple-1">
+          <a href="" id="link1"></a>
+   <p class="contentText" id="text1"> top kek </p>
+      </div>
+      <div class="exemple" id="exemple-2"> 
+        <a href="" id="link2"></a>
+   <p class="contentText" id="text2"> top kek </p>
+      </div>
+      <div class="exemple" id="exemple-3">
+        <a href="" id="link3"></a>
+   <p class="contentText" id="text3"> top kek </p>
+      </div>
+      
   </div>
-  <div class="column"></div>
-  <div class="column"></div>
-            
-          </div>
+  
+    </div>
+   
+  
+</body>
 <!-- partial -->
-  <script  src="./script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js'></script><script  src="./script.js"></script>
 
 </body>
 </html>
